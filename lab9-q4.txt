@@ -1,0 +1,26 @@
+module adding_calculator(
+    input [15:0] sw,
+    input [3:0] btn,
+    output [15:0] led
+);
+
+reg [15:0] operand_A;
+reg [15:0] operand_B;
+reg [15:0] sum;
+
+always @(posedge btn[0])
+    operand_A <= sw;
+
+always @(posedge btn[1])
+    operand_B <= sw;
+
+always @(operand_A or operand_B)
+    sum <= operand_A + operand_B;
+
+reg [15:0] shift_reg_out;
+always @(posedge btn[0])
+    shift_reg_out <= {sw[15], shift_reg_out[15:1]};
+
+assign led = sum;
+
+endmodule
