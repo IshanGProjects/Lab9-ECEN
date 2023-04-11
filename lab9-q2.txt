@@ -1,0 +1,13 @@
+In the scenario where the data present is 0 we can observe a 3 second rising edge for the time units becuase:
+     	 0: C=0, D=0, Q=x, Qn=x
+    	10: C=1, D=0, Q=x, Qn=x
+    	12: C=1, D=0, Q=x, Qn=1
+    	13: C=1, D=0, Q=0, Qn=1
+the c value has changed from 0 to a 1 and we observe no latching with the q for that status.
+
+In the scenario where the data present is 1 we can obvserve a 2 second rising edge for the time units because:
+	30: C=1, D=1, Q=0, Qn=1
+    	32: C=1, D=1, Q=1, Qn=1
+the q value latches, and is shifted to 1.
+
+This is primarily due to the order that Qn value and the q is triggered. In the situation where the data value is 0, we have the Qn value set first, and in the other case the Qn is set second.

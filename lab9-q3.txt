@@ -1,0 +1,9 @@
+// Code your design here
+//clk is the onbaord clock
+module shift_reg(input [15:0] sw, [3:0] btn, output [15:0]led);
+  reg [15:0]o;
+  always @(posedge btn[0]) begin
+    o <= {sw[15], o[15:1]};  // Shift in the left-most switch value
+   end
+   assign led = o;
+endmodule
